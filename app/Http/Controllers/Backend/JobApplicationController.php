@@ -15,7 +15,7 @@ class JobApplicationController extends Controller
         $data = $request->all();
         $perPage= 10;
         $jobApplications = DB::table("job_applications");
-        $jobApplications->orderByDesc("id");
+        $jobApplications->whereNull('deleted_at');
         $search =  $request->input('search');
         $status =  $request->input('status');
         if(!in_array($status,["Approved","In process","Denied"])){
